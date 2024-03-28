@@ -10,12 +10,15 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
-    { title: "you", artist: "Fertile Ground", genre: "Soulful House" },
+    { title: "You", artist: "Fertile Ground", genre: "Soulful House" },
     { title: "Cure", artist: "Moon Child", genre: "Lounge" },
     { title: "Damage", artist: "Her", genre: "R&B" },
     { title: "Youre Face", artist: "Sam Salter", genre: "R&B" },
     { title: "Too Much", artist: "Sampha", genre: "R&B" },
-];
+    { title: "Live in Amsterdam", artist: "June Mariezy", genre: "Lounge" },
+    { title: "Dont touch my hair", artist: "Solange", genre: "Lounge" },
+    { title: "Yebo Nkosi", artist: "Chayma Chamelion", genre: "Soulful House" },
+]  
 
 const guardians = {
     "Star-Lord": "Rock",
@@ -24,17 +27,16 @@ const guardians = {
     "Rocket": "Lounge",
     "Groot": "Soulful House",
 };
-// Function to generate playlists based on preferred genre
+
 function generatePlaylist(guardians, songs) {
     const playlists = {};
 
-    // Iterate over each guardian and their preferred genre
     Object.entries(guardians).forEach(([guardian, genre]) => {
         if (genre) {
-            // Filter songs based on the guardian's preferred genre
+           
             const playlist = songs.filter(song => song.genre === genre)
                                    .map(song => `${song.title} by ${song.artist}`);
-            // Store the playlist for the guardian
+          
             playlists[guardian] = playlist;
         }
     });
@@ -77,14 +79,13 @@ function displayPlaylists(playlists) {
             playlistList.appendChild(listItem);
         });
 
-        // Append playlist list to the playlist div
+       
         playlistDiv.appendChild(playlistList);
-        // Append playlist div to the playlists container
+   
         playlistsContainer.appendChild(playlistDiv);
     });
 }
 
-// Generate playlists based on guardians' preferences
 const playlists = generatePlaylist(guardians, songs);
-// Display the generated playlists
+
 displayPlaylists(playlists);
