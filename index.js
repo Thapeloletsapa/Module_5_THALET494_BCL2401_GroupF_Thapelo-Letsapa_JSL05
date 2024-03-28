@@ -1,4 +1,4 @@
-// Array of song objects. Add at least 5 songs with title, artist, and genre properties.
+
 const songs = [
     { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Pop" },
     { title: "Moonage Daydream", artist: "David Bowie", genre: "Rock" },
@@ -11,12 +11,11 @@ const songs = [
     { title: "Come and Get Your Love", artist: "Redbone", genre: "Rock" },
     { title: "I'm Not in Love", artist: "10cc", genre: "Pop" },
     { title: "Fooled Around and Fell in Love", artist: "Elvin Bishop", genre: "Rock" },
-    { title: "you", artist: "Fertile Ground", genre: "Lounge" },
+    { title: "you", artist: "Fertile Ground", genre: "Soulful House" },
     { title: "Cure", artist: "Moon Child", genre: "Lounge" },
     { title: "Damage", artist: "Her", genre: "R&B" },
     { title: "Youre Face", artist: "Sam Salter", genre: "R&B" },
     { title: "Too Much", artist: "Sampha", genre: "R&B" },
-     // Feel free to add even more songs
 ];
 
 
@@ -24,7 +23,10 @@ const songs = [
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
-    // Add preferences for Drax, Rocket, and Groot
+    "Drax": "R&B",
+    "Rocket": "Lounge",
+    "Groot": "Soulful House"
+   
 };
 
 // Function to generate playlist based on preferred genre
