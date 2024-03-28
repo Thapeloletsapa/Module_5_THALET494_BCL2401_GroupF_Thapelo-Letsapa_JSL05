@@ -56,11 +56,15 @@ function displayPlaylists(playlists) {
 
         // Create heading for each playlist
         const heading = document.createElement('h2');
-        heading.textContent = guardian === 'Star-Lord' ? 'Star-Lord Playlist' : guardian;
+        heading.textContent = `${guardian}\'s Playlist`;
         playlistDiv.appendChild(heading);
+
+      
+
 
         // Create list for each playlist
         const playlistList = document.createElement('ul');
+        playlistList.style.listStyleType = 'none';
         // Iterate over each song in the playlist
         playlists[guardian].forEach(song => {
             const listItem = document.createElement('li');
@@ -72,10 +76,11 @@ function displayPlaylists(playlists) {
             const artistSpan = document.createElement('span');
             artistSpan.textContent = artist;
             // Apply gold color and link only to the title span
-            titleSpan.style.color = 'gold';
+            titleSpan.classList.add('song-title')
             listItem.appendChild(titleSpan);
             listItem.appendChild(document.createTextNode(' by '));
             listItem.appendChild(artistSpan);
+            listItem.classList.add('song')
             playlistList.appendChild(listItem);
         });
 
