@@ -1,4 +1,3 @@
-
 const songs = [
     { title: "Hooked on a Feeling", artist: "Blue Swede", genre: "Pop" },
     { title: "Moonage Daydream", artist: "David Bowie", genre: "Rock" },
@@ -18,30 +17,74 @@ const songs = [
     { title: "Too Much", artist: "Sampha", genre: "R&B" },
 ];
 
-
-// Object containing each Guardian's preferred genre
 const guardians = {
     "Star-Lord": "Rock",
     "Gamora": "Pop",
     "Drax": "R&B",
     "Rocket": "Lounge",
-    "Groot": "Soulful House"
-   
+    "Groot": "Soulful House",
 };
-
-// Function to generate playlist based on preferred genre
+// Function to generate playlists based on preferred genre
 function generatePlaylist(guardians, songs) {
-    // Use the map() function to create playlists for each Guardian
-    // Your code here
+    const playlists = {};
+
+    // Iterate over each guardian and their preferred genre
+    Object.entries(guardians).forEach(([guardian, genre]) => {
+        if (genre) {
+            // Filter songs based on the guardian's preferred genre
+            const playlist = songs.filter(song => song.genre === genre)
+                                   .map(song => `${song.title} by ${song.artist}`);
+            // Store the playlist for the guardian
+            playlists[guardian] = playlist;
+        }
+    });
+
+    return playlists;
 }
 
-// Call generatePlaylist and display the playlists for each Guardian
-generatePlaylist(guardians, songs);
+// Function to display playlists for each guardian
+function displayPlaylists(playlists) {
+    const playlistsContainer = document.getElementById('playlists');
+    playlistsContainer.innerHTML = ''; // Clear existing content
 
+    // Iterate over each guardian's playlist
+    Object.keys(playlists).forEach(guardian => {
+        const playlistDiv = document.createElement('div');
+        playlistDiv.classList.add('playlist');
 
+        // Create heading for each playlist
+        const heading = document.createElement('h2');
+        heading.textContent = guardian === 'Star-Lord' ? 'Star-Lord Playlist' : guardian;
+        playlistDiv.appendChild(heading);
 
-/*1. **Expand the Songs Array**: Add at least five songs to the `songs` array, each with `title`, `artist`, and `genre`.
-2. **Assign Preferences**: Complete the `guardians` object by assigning each Guardian their preferred music genre.
-3. **Generate Playlists**: Implement the `generatePlaylist` function. Use the `map()` function to create a personalized playlist for each Guardian based on their genre preference.
-4. **Display Playlists**: Dynamically create and append elements to the `#playlists` div to display each Guardian's playlist. Include the Guardian's name and their list of songs.
-5. **Test Your Application**: Ensure that your application correctly filters songs by genre for each Guardian and displays the playlists on the web page.*/
+        // Create list for each playlist
+        const playlistList = document.createElement('ul');
+        // Iterate over each song in the playlist
+        playlists[guardian].forEach(song => {
+            const listItem = document.createElement('li');
+            // Split song into title and artist
+            const [title, artist] = song.split(' by ');
+            // Create spans for title and artist
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = title;
+            const artistSpan = document.createElement('span');
+            artistSpan.textContent = artist;
+            // Apply gold color and link only to the title span
+            titleSpan.style.color = 'gold';
+            listItem.appendChild(titleSpan);
+            listItem.appendChild(document.createTextNode(' by '));
+            listItem.appendChild(artistSpan);
+            playlistList.appendChild(listItem);
+        });
+
+        // Append playlist list to the playlist div
+        playlistDiv.appendChild(playlistList);
+        // Append playlist div to the playlists container
+        playlistsContainer.appendChild(playlistDiv);
+    });
+}
+
+// Generate playlists based on guardians' preferences
+const playlists = generatePlaylist(guardians, songs);
+// Display the generated playlists
+displayPlaylists(playlists);
